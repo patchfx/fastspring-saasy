@@ -1,6 +1,6 @@
 = fastspring
 
-Description goes here.
+Ruby lib for using the FastSpring (Saasy) subscription service
 
 == Contributing to fastspring
  

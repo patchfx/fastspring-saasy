@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "fastspring"
   gem.homepage = "http://github.com/patchfx/fastspring"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby lib for using the FastSpring (Saasy) API}
+  gem.description = %Q{Ruby lib for using the FastSpring (Saas) subscription management API}
   gem.email = "richard@justaddpixels.com"
   gem.authors = ["Richard Patching"]
   # dependencies defined in Gemfile
