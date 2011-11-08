@@ -1,0 +1,25 @@
+<subscription>
+  <status>active</status>
+  <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+  <statusReason>completed</statusReason>
+  <cancelable>true</cancelable>
+  <reference/>
+  <test>true</test>
+  <referrer>acme_app</referrer>
+  <sourceName/>
+  <sourceKey/>
+  <sourceCampaign/>
+  <customer>
+    <firstName/>
+    <lastName/>
+    <company/>
+    <email/>
+    <phoneNumber/>
+  </customer>
+  <customerUrl/>
+  <productName/>
+  <tags/>
+  <quantity>0</quantity>
+  <nextPeriodDate>2010-08-15Z</nextPeriodDate>
+  <end>2010-08-15Z</end>
+</subscription>
