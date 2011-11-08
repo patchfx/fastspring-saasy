@@ -17,7 +17,6 @@ module FastSpring
       "/company/#{@company}/subscription/#{@reference}"
     end
 
-
     def value_for(attribute)
       parsed_response.fetch(attribute)
     end
@@ -36,6 +35,18 @@ module FastSpring
 
     def referrer
       value_for('referrer')
+    end
+
+    def source_name
+      value_for('sourceName')
+    end
+
+    def source_key
+      value_for('sourceKey')
+    end
+
+    def source_campaign
+      value_for('sourceCampaign')
     end
 
     private

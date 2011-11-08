@@ -6,9 +6,9 @@
   <reference/>
   <test>true</test>
   <referrer>acme_app</referrer>
-  <sourceName/>
-  <sourceKey/>
-  <sourceCampaign/>
+  <sourceName>acme_source</sourceName>
+  <sourceKey>acme_source_key</sourceKey>
+  <sourceCampaign>acme_source_campaign</sourceCampaign>
   <customer>
     <firstName/>
     <lastName/>

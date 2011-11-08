@@ -39,5 +39,17 @@ describe FastSpring::Subscription do
       subject.referrer.should == 'acme_app'
     end
 
+    it 'returns the source name' do
+      subject.source_name.should == 'acme_source'
+    end
+
+    it 'returns the source key' do
+      subject.source_key.should == 'acme_source_key'
+    end
+
+    it 'returns the source campaign' do
+      subject.source_campaign.should == 'acme_source_campaign'
+    end
+
   end
 end
