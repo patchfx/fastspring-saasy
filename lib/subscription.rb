@@ -1,5 +1,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'customer.rb'))
 require 'httparty'
+require 'date'
+
 module FastSpring
   class Subscription
     include HTTParty
@@ -25,6 +27,16 @@ module FastSpring
     # Subscription status
     def status
       value_for('status')
+    end
+
+    # When the status was last changed
+    def status_changed
+      DateTime.parse(value_for('statusChanged'))
+    end
+
+    # The reason for a status change
+    def status_reason
+      value_for('statusReason')
     end
 
     # Is the subscription active?
@@ -55,6 +67,15 @@ module FastSpring
 
     def product_name
       value_for('productName')
+    end
+
+    def next_period_date
+      Date.parse(value_for('nextPeriodDate'))
+    end
+
+    # The date the subscription ends on
+    def ends_on
+      Date.parse(value_for('end'))
     end
 
     # Returns a customer object

@@ -28,6 +28,14 @@ describe FastSpring::Subscription do
         subject.status.should == 'active'
       end
 
+      it 'returns the status changed date' do
+        subject.status_changed.should be_an_instance_of(DateTime)
+      end
+
+      it 'returns the reason for status change' do
+        subject.status_reason.should == 'completed'
+      end
+
       it 'is active' do
         subject.should be_active
       end
@@ -59,6 +67,14 @@ describe FastSpring::Subscription do
 
     it 'returns the product name' do
       subject.product_name.should == 'Acme Inc Web'
+    end
+
+    it 'returns the next period date' do
+      subject.next_period_date.should be_an_instance_of(Date)
+    end
+
+    it 'returns the end date' do
+      subject.ends_on.should be_an_instance_of(Date)
     end
 
   end
