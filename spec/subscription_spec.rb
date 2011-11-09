@@ -57,5 +57,9 @@ describe FastSpring::Subscription do
       subject.customer.should == customer
     end
 
+    it 'returns the product name' do
+      subject.product_name.should == 'Acme Inc Web'
+    end
+
   end
 end

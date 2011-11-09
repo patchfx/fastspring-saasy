@@ -53,6 +53,10 @@ module FastSpring
       value_for('sourceCampaign')
     end
 
+    def product_name
+      value_for('productName')
+    end
+
     # Returns a customer object
     def customer
       @customer ||= Customer.new(value_for('customer'))

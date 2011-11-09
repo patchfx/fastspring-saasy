@@ -17,7 +17,7 @@
     <phoneNumber/>
   </customer>
   <customerUrl/>
-  <productName/>
+  <productName>Acme Inc Web</productName>
   <tags/>
   <quantity>0</quantity>
   <nextPeriodDate>2010-08-15Z</nextPeriodDate>
