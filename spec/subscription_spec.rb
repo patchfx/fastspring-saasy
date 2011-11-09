@@ -16,9 +16,11 @@ describe FastSpring::Subscription do
 
   context 'subscription details' do
     subject { FastSpring::Subscription.new('acme', 'test_ref', 'admin', 'test') }
+    let(:customer) { mock(:customer) }
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
         to_return(stub_http_response_with('basic_subscription.xml'))
+      FastSpring::Customer.stub(:new => customer)
     end
 
     context 'when active' do
@@ -49,6 +51,10 @@ describe FastSpring::Subscription do
 
     it 'returns the source campaign' do
       subject.source_campaign.should == 'acme_source_campaign'
+    end
+
+    it 'returns a customer' do
+      subject.customer.should == customer
     end
 
   end
