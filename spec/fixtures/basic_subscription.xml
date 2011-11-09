@@ -10,11 +10,11 @@
   <sourceKey>acme_source_key</sourceKey>
   <sourceCampaign>acme_source_campaign</sourceCampaign>
   <customer>
-    <firstName/>
-    <lastName/>
-    <company/>
-    <email/>
-    <phoneNumber/>
+    <firstName>John</firstName>
+    <lastName>Doe</lastName>
+    <company>Doe Inc</company>
+    <email>johndoe@example.com</email>
+    <phoneNumber>0123456789</phoneNumber>
   </customer>
   <customerUrl/>
   <productName>Acme Inc Web</productName>
