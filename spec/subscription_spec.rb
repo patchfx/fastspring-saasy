@@ -76,6 +76,5 @@ describe FastSpring::Subscription do
     it 'returns the end date' do
       subject.ends_on.should be_an_instance_of(Date)
     end
-
   end
 end

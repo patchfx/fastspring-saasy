@@ -83,6 +83,10 @@ module FastSpring
       @customer ||= Customer.new(value_for('customer'))
     end
 
+    def destroy
+      self.class.delete(base_subscription_path, :basic_auth => @auth)
+    end
+
     private
 
     def parsed_response
