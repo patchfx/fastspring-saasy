@@ -1,5 +1,3 @@
-require File.expand_path(File.join(File.dirname(__FILE__), 'customer.rb'))
-require 'httparty'
 require 'date'
 
 module FastSpring
@@ -7,7 +5,7 @@ module FastSpring
     include HTTParty
     base_uri 'https://api.fastspring.com'
     format :xml
-    #debug_output
+    debug_output
 
     attr_reader :customer
 
@@ -16,7 +14,10 @@ module FastSpring
       @auth = {:username => username, :password => password}
       @company = company
       @reference = reference
-      @response = self.class.get(base_subscription_path, :basic_auth => @auth)
+      begin
+        @response = self.class.get(base_subscription_path, :basic_auth => @auth)
+      rescue FastSpring::Error::NotFound
+      end
     end
 
     # Returns the base path for a subscription
@@ -99,3 +100,4 @@ module FastSpring
 
   end
 end
+

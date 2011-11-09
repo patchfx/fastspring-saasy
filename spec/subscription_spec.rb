@@ -1,4 +1,4 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '../lib/subscription.rb'))
+require File.expand_path(File.join(File.dirname(__FILE__), '../lib/fastspring-saasy.rb'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper.rb'))
 
 describe FastSpring::Subscription do
