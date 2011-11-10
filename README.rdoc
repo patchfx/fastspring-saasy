@@ -8,11 +8,12 @@ Ruby library to access the FastSpring Saasy API.
 
 == Usage
 
+  require 'fastspring-saasy'
   FastSpring::Subscription.new('company', 'reference', 'user', 'password')
 
 == Todo
 
-* Support update/cancel/renew
+* Support update
 * Support the order API
  
 == Copyright

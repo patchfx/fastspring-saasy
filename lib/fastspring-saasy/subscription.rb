@@ -63,6 +63,7 @@ module FastSpring
       value_for('sourceCampaign')
     end
 
+    # Subscription product name
     def product_name
       value_for('productName')
     end
@@ -81,6 +82,7 @@ module FastSpring
       @customer ||= Customer.new(value_for('customer'))
     end
 
+    # Cancel the subscription
     def destroy
       self.class.delete(base_subscription_path, :basic_auth => @auth)
     end
@@ -89,6 +91,7 @@ module FastSpring
       "#{base_subscription_path}/renew"
     end
 
+    # Renew the subscription
     def renew
       self.class.post(renew_path, :basic_auth => @auth)
     end
