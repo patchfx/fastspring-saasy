@@ -77,4 +77,16 @@ describe FastSpring::Subscription do
       subject.ends_on.should be_an_instance_of(Date)
     end
   end
+
+  context 'renew' do
+    subject { FastSpring::Subscription.new('acme', 'test_ref', 'admin', 'test') }
+    before do
+      stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
+        to_return(stub_http_response_with('basic_subscription.xml'))
+    end
+
+    it 'returns a renewal path' do
+      subject.renew_path.should == "/company/acme/subscription/test_ref/renew"
+    end
+  end
 end

@@ -5,7 +5,7 @@ module FastSpring
     include HTTParty
     base_uri 'https://api.fastspring.com'
     format :xml
-    debug_output
+    #debug_output
 
     attr_reader :customer
 
@@ -14,10 +14,7 @@ module FastSpring
       @auth = {:username => username, :password => password}
       @company = company
       @reference = reference
-      begin
-        @response = self.class.get(base_subscription_path, :basic_auth => @auth)
-      rescue FastSpring::Error::NotFound
-      end
+      @response = self.class.get(base_subscription_path, :basic_auth => @auth)
     end
 
     # Returns the base path for a subscription
@@ -86,6 +83,14 @@ module FastSpring
 
     def destroy
       self.class.delete(base_subscription_path, :basic_auth => @auth)
+    end
+
+    def renew_path
+      "#{base_subscription_path}/renew"
+    end
+
+    def renew
+      self.class.post(renew_path, :basic_auth => @auth)
     end
 
     private
