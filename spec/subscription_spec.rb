@@ -2,8 +2,17 @@ require File.expand_path(File.join(File.dirname(__FILE__), '../lib/fastspring-sa
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper.rb'))
 
 describe FastSpring::Subscription do
+
+  before do
+    FastSpring::Account.setup do |config|
+      config[:username] = 'admin'
+      config[:password] = 'test'
+      config[:company] = 'acme'
+    end
+  end
+
   context 'url for subscriptions' do
-    subject { FastSpring::Subscription.new('acme', 'test_ref', 'admin', 'test') }
+    subject { FastSpring::Subscription.find('test_ref') }
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
         to_return(:status => 200, :body => "", :headers => {})
@@ -15,7 +24,7 @@ describe FastSpring::Subscription do
   end
 
   context 'subscription details' do
-    subject { FastSpring::Subscription.new('acme', 'test_ref', 'admin', 'test') }
+    subject { FastSpring::Subscription.find('test_ref') }
     let(:customer) { mock(:customer) }
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
@@ -79,7 +88,7 @@ describe FastSpring::Subscription do
   end
 
   context 'renew' do
-    subject { FastSpring::Subscription.new('acme', 'test_ref', 'admin', 'test') }
+    subject { FastSpring::Subscription.find('test_ref') }
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
         to_return(stub_http_response_with('basic_subscription.xml'))

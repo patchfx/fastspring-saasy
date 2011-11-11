@@ -10,11 +10,17 @@ module FastSpring
     attr_reader :customer
 
     # Get the subscription from Saasy
-    def initialize(company, reference, username, password)
-      @auth = {:username => username, :password => password}
-      @company = company
+    def initialize(reference)
+      @auth = {:username => FastSpring::Account.fetch(:username), 
+              :password => FastSpring::Account.fetch(:password)}
+      @company = FastSpring::Account.fetch(:company)
       @reference = reference
       @response = self.class.get(base_subscription_path, :basic_auth => @auth)
+    end
+
+    # Find a subscription by reference
+    def self.find(reference)
+      self.new(reference)
     end
 
     # Returns the base path for a subscription

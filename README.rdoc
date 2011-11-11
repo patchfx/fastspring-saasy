@@ -9,13 +9,20 @@ Ruby library to access the FastSpring Saasy API.
 == Usage
 
   require 'fastspring-saasy'
+
+  FastSpring::Account.setup do |config|
+    config[:username] = 'user'
+    config[:password] = 'password'
+    config[:company] = 'company'
+  end
+
+  #get subscription
   FastSpring::Subscription.new('company', 'reference', 'user', 'password')
 
 == Todo
 
-* Support update
 * Support the order API
- 
+
 == Copyright
 
 Copyright (c) 2011 Richard Patching. See LICENSE.txt for
