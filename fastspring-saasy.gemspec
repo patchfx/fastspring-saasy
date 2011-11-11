@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "fastspring-saasy"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Richard Patching"]
-  s.date = "2011-11-10"
+  s.date = "2011-11-11"
   s.description = "Ruby lib for using the FastSpring (Saas) subscription management API"
   s.email = "richard@justaddpixels.com"
   s.extra_rdoc_files = [
@@ -27,9 +27,11 @@ Gem::Specification.new do |s|
     "VERSION",
     "fastspring-saasy.gemspec",
     "lib/fastspring-saasy.rb",
+    "lib/fastspring-saasy/account.rb",
     "lib/fastspring-saasy/customer.rb",
     "lib/fastspring-saasy/error.rb",
     "lib/fastspring-saasy/subscription.rb",
+    "spec/account_spec.rb",
     "spec/customer_spec.rb",
     "spec/fixtures/basic_subscription.xml",
     "spec/spec_helper.rb",
