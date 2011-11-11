@@ -17,7 +17,7 @@ Ruby library to access the FastSpring Saasy API.
   end
 
   #get subscription
-  FastSpring::Subscription.new('company', 'reference', 'user', 'password')
+  FastSpring::Subscription.find('reference')
 
 == Todo
 
