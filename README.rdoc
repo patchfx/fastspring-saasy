@@ -19,9 +19,8 @@ Ruby library to access the FastSpring Saasy API.
   #get subscription
   FastSpring::Subscription.find('reference')
 
-== Todo
-
-* Support the order API
+  #get order
+  FastSpring::Order.find('reference')
 
 == Copyright
 
