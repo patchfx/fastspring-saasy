@@ -1,26 +1,18 @@
 require 'date'
 
 module FastSpring
-  class Subscription
-    include HTTParty
-    base_uri 'https://api.fastspring.com'
-    format :xml
-    #debug_output
-
-    attr_reader :customer
-
-    # Get the subscription from Saasy
-    def initialize(reference)
-      @auth = {:username => FastSpring::Account.fetch(:username), 
-              :password => FastSpring::Account.fetch(:password)}
-      @company = FastSpring::Account.fetch(:company)
-      @reference = reference
-      @response = self.class.get(base_subscription_path, :basic_auth => @auth)
-    end
+  class Subscription < Base
 
     # Find a subscription by reference
     def self.find(reference)
-      self.new(reference)
+      subscription = self.new(reference)
+      subscription.find
+      subscription
+    end
+
+    # Get the subscription from Saasy
+    def find
+      @response = self.class.get(base_subscription_path, :basic_auth => @auth)
     end
 
     # Returns the base path for a subscription
