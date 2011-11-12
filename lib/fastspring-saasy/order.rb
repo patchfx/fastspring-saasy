@@ -50,6 +50,10 @@ module FastSpring
       value_for('shipping').to_f
     end
 
+    def address
+      @address ||= Address.new(value_for('address'))
+    end
+
     private
 
     def parsed_response

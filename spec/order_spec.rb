@@ -25,11 +25,13 @@ describe FastSpring::Order do
   context 'order details' do
     subject { FastSpring::Order.find('test_ref') }
     let(:customer) { mock(:customer) }
+    let(:address) { mock(:address) }
 
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/order/test_ref").
         to_return(stub_http_response_with('basic_order.xml'))
       FastSpring::Customer.stub(:new => customer)
+      FastSpring::Address.stub(:new => address)
     end
 
     it 'returns the status' do
@@ -78,6 +80,10 @@ describe FastSpring::Order do
 
     it 'returns the shipping' do
       subject.shipping.should == 0.0
+    end
+
+    it 'returns the address' do
+      subject.address.should == address
     end
 
   end
