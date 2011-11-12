@@ -3,31 +3,15 @@ require 'date'
 module FastSpring
   class Subscription < Base
 
-    # Find a subscription by reference
-    def self.find(reference)
-      subscription = self.new(reference)
-      subscription.find
-      subscription
-    end
-
     # Get the subscription from Saasy
     def find
       @response = self.class.get(base_subscription_path, :basic_auth => @auth)
+      self
     end
 
     # Returns the base path for a subscription
     def base_subscription_path
       "/company/#{@company}/subscription/#{@reference}"
-    end
-
-    # Subscription status
-    def status
-      value_for('status')
-    end
-
-    # When the status was last changed
-    def status_changed
-      DateTime.parse(value_for('statusChanged'))
     end
 
     # The reason for a status change
@@ -45,22 +29,6 @@ module FastSpring
       value_for('cancelable') == 'true'
     end
 
-    def referrer
-      value_for('referrer')
-    end
-
-    def source_name
-      value_for('sourceName')
-    end
-
-    def source_key
-      value_for('sourceKey')
-    end
-
-    def source_campaign
-      value_for('sourceCampaign')
-    end
-
     # Subscription product name
     def product_name
       value_for('productName')
@@ -73,11 +41,6 @@ module FastSpring
     # The date the subscription ends on
     def ends_on
       Date.parse(value_for('end'))
-    end
-
-    # Returns a customer object
-    def customer
-      @customer ||= Customer.new(value_for('customer'))
     end
 
     # Cancel the subscription
@@ -98,10 +61,6 @@ module FastSpring
 
     def parsed_response
       @response.parsed_response['subscription']
-    end
-
-    def value_for(attribute)
-      parsed_response.fetch(attribute)
     end
 
   end

@@ -14,5 +14,45 @@ module FastSpring
       @reference = reference
     end
 
+    def self.find(reference)
+      self.new(reference).find
+    end
+
+    # Returns the current status
+    def status
+      value_for('status')
+    end
+
+    # When the status was last changed
+    def status_changed
+      DateTime.parse(value_for('statusChanged'))
+    end
+
+    def referrer
+      value_for('referrer')
+    end
+
+    def source_name
+      value_for('sourceName')
+    end
+
+    def source_key
+      value_for('sourceKey')
+    end
+
+    def source_campaign
+      value_for('sourceCampaign')
+    end
+
+    # Returns a customer object
+    def customer
+      @customer ||= Customer.new(value_for('customer'))
+    end
+
+    private
+    def value_for(attribute)
+      parsed_response.fetch(attribute)
+    end
+
   end
 end
