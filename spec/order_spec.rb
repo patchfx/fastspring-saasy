@@ -40,6 +40,46 @@ describe FastSpring::Order do
       subject.status_changed.should be_an_instance_of(DateTime)
     end
 
+    it 'returns the order reference' do
+      subject.reference.should == 'TEST-0RD3R'
+    end
+
+    it 'returns the test status' do
+      subject.test?.should be_false
+    end
+
+    it 'returns the due date' do
+      subject.due.should be_an_instance_of(DateTime)
+    end
+
+    it 'returns the currency code' do
+      subject.currency.should == 'GBP'
+    end
+
+    it 'returns the referrer' do
+      subject.referrer.should == 'acme_web'
+    end
+
+    it 'returns the origin ip' do
+      subject.origin_ip.should == '123.456.789.0'
+    end
+
+    it 'returns the purchaser' do
+      subject.purchaser.should == customer
+    end
+
+    it 'returns the total' do
+      subject.total.should == 10.00
+    end
+
+    it 'returns the tax' do
+      subject.tax.should == 1.00
+    end
+
+    it 'returns the shipping' do
+      subject.shipping.should == 0.0
+    end
+
   end
 
 end

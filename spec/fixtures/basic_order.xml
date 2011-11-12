@@ -1,14 +1,14 @@
 <order>
-  <reference/>
+  <reference>TEST-0RD3R</reference>
   <status>completed</status>
   <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
   <test>false</test>
   <due>2010-08-15T00:00:00.000Z</due>
-  <currency/>
-  <referrer/>
-  <originIp/>
-  <total>0.0</total>
-  <tax>0.0</tax>
+  <currency>GBP</currency>
+  <referrer>acme_web</referrer>
+  <originIp>123.456.789.0</originIp>
+  <total>10.00</total>
+  <tax>1.00</tax>
   <shipping>0.0</shipping>
   <sourceName/>
   <sourceKey/>
