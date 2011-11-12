@@ -15,6 +15,14 @@ module FastSpring
       @items ||= [Item.new(parsed_response['orderItems']['orderItem'])]
     end
 
+    def payments
+      @payments ||= [Payment.new(parsed_response['payments']['payment'])]
+    end
+
+    def payment
+      payments[0]
+    end
+
     # Return the order reference
     def reference
       value_for('reference')

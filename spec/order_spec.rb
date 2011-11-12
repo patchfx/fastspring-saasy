@@ -27,6 +27,7 @@ describe FastSpring::Order do
     let(:customer) { mock(:customer) }
     let(:address) { mock(:address) }
     let(:item) { mock(:item) }
+    let(:payment) { mock(:payment) }
 
     before do
       stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/order/test_ref").
@@ -34,6 +35,7 @@ describe FastSpring::Order do
       FastSpring::Customer.stub(:new => customer)
       FastSpring::Address.stub(:new => address)
       FastSpring::Item.stub(:new => item)
+      FastSpring::Payment.stub(:new => payment)
     end
 
     it 'returns the status' do
@@ -92,6 +94,10 @@ describe FastSpring::Order do
       it 'has an order item' do
         subject.items.should == [item]
       end
+    end
+
+    it 'has a payment' do
+      subject.payment.should == payment
     end
 
   end
