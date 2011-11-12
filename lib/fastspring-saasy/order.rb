@@ -1,6 +1,6 @@
 module FastSpring
   class Order < Base
-    attr_reader :purchaser
+    attr_reader :purchaser, :items
     # Get the order from Saasy
     def find
       @response = self.class.get(base_order_path, :basic_auth => @auth)
@@ -9,6 +9,10 @@ module FastSpring
 
     def base_order_path
       "/company/#{@company}/order/#{@reference}"
+    end
+
+    def items
+      @items ||= [Item.new(parsed_response['orderItems']['orderItem'])]
     end
 
     # Return the order reference
