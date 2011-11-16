@@ -1,9 +1,9 @@
 source :rubygems
 
 gem 'httparty'
-gem 'rake'
 
 group :development do
+  gem 'rake'
   gem 'bundler'
   gem 'jeweler'
 end
