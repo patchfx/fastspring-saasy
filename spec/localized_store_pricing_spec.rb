@@ -14,7 +14,7 @@ describe FastSpring::LocalizedStorePricing do
   context 'url for localized store pricing' do
     subject { FastSpring::LocalizedStorePricing.find('/standard', "1.2.3.4") }
     before do
-      stub_request(:get, "http://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
+      stub_request(:get, "https://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
         to_return(:status => 200, :body => "", :headers => {})
     end
   
@@ -26,7 +26,7 @@ describe FastSpring::LocalizedStorePricing do
   context "parsed response" do
     subject { FastSpring::LocalizedStorePricing.find('/standard', "1.2.3.4") }
     before do
-      stub_request(:get, "http://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
+      stub_request(:get, "https://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
         to_return(stub_http_response_with('basic_localized_store_pricing.txt'))
     end
 
