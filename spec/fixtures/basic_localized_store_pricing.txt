@@ -1,0 +1,9 @@
+user_country=US
+user_language=en
+user_currency=USD
+product_1_path=/standard
+product_1_quantity=1
+product_1_unit_value=35.00
+product_1_unit_currency=USD
+product_1_unit_display=$35.00
+product_1_unit_html=$35.00
