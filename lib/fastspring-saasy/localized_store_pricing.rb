@@ -17,7 +17,9 @@ module FastSpring
     
     # Get the localized store pricing from Saasy
     def find
-      @response = self.class.get(base_localized_store_pricing_path, :query => query)
+      # For some reason the implicit determination of the Txt parser does not work.
+      # So we'll just blatently pass it in right now.
+      @response = self.class.get(base_localized_store_pricing_path, :query => query, :parser => Parser::Txt)
       self
     end
     
