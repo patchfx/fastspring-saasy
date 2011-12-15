@@ -1,7 +1,7 @@
 module FastSpring
   class LocalizedStorePricing
     include HTTParty
-    base_uri 'https://api.fastspring.com'
+    base_uri 'http://sites.fastspring.com'
     
     def initialize(product_path, remote_ip="", http_accept_language="en", http_x_forwarded_for="")
       @company = FastSpring::Account.fetch(:company)
