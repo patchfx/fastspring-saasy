@@ -3,9 +3,9 @@ module FastSpring
     include HTTParty
     base_uri 'http://sites.fastspring.com'
     
-    def initialize(product_path, remote_ip="", http_accept_language="en", http_x_forwarded_for="")
+    def initialize(product_paths, remote_ip="", http_accept_language="en", http_x_forwarded_for="")
       @company = FastSpring::Account.fetch(:company)
-      @product_path = product_path
+      @product_paths = product_paths
       @remote_ip = remote_ip
       @http_accept_language = http_accept_language
       @http_x_forwarded_for = http_x_forwarded_for
@@ -28,12 +28,13 @@ module FastSpring
     end
     
     def query
-      { 
-        :product_1_path => @product_path,
+      query_hash = Hash.new
+      @product_paths.each_index{ |index| query_hash["product_#{(index + 1)}_path".to_sym] = @product_paths[index] }
+      query_hash.merge({ 
         :user_remote_addr => @remote_ip,
         :user_x_forwarded_for => @http_accept_language,
         :user_accept_language => @http_x_forwarded_for
-      }
+      })
     end
     
     def user_country
@@ -48,52 +49,55 @@ module FastSpring
       parsed_response['user_currency']
     end
     
-    def product_path(index)
-      parsed_response["product_#{index}_path"]
+    def product_quantity(product_path)
+      parsed_response[product_path]["quantity"]
     end
     
-    def product_quantity(index)
-      parsed_response["product_#{index}_quantity"]
+    def product_unit_value(product_path)
+      parsed_response[product_path]["unit_value"]
     end
     
-    def product_unit_value(index)
-      parsed_response["product_#{index}_unit_value"]
+    def product_unit_currency(product_path)
+      parsed_response[product_path]["unit_currency"]
     end
     
-    def product_unit_currency(index)
-      parsed_response["product_#{index}_unit_currency"]
+    def product_unit_display(product_path)
+      parsed_response[product_path]["unit_display"]
     end
     
-    def product_unit_display(index)
-      parsed_response["product_#{index}_unit_display"]
-    end
-    
-    def product_unit_html(index)
-      parsed_response["product_#{index}_unit_html"]
+    def product_unit_html(product_path)
+      parsed_response[product_path]["unit_html"]
     end
 
     private
     
     def parsed_response
-      # @formatted_response ||= formatted_response
-      @response.parsed_response
+      @formatted_response ||= formatted_response
     end
     
     def formatted_response
-      formatted_response = Hash.new
-      formatted_response["products"] = Array.new
-      @response.parsed_response.each do |key, value|
-        if key.start_with?("product")
-          index = key.match(/(\d*)/)[0].to_i
-          product_key = key.match(/_(\D*)$/)[0]
-          
-          formatted_response["products"][index] ||= Hash.new
-          formatted_response["products"][index][product_key] = value
+      response = Hash.new
+
+      index = 1
+      more_products = true
+      while more_products
+        product_path = @response.parsed_response["product_#{index}_path"]
+        if product_path
+          @response.parsed_response.each do |key, value| 
+            if key.match("product_#{index}") && key != "product_#{index}_path" then
+              response[product_path] ||= Hash.new
+              response[product_path][key.match(/\d+_(.*)/)[1]] = value
+            end
+          end
+          index += 1
         else
-          formatted_response[key] = value
+          more_products = false
         end
       end
-      formatted_response
+
+      response.merge(
+        @response.parsed_response.reject{ |key, value| key.match(/^product_/) }
+      )
     end
   end
 end
