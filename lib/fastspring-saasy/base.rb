@@ -8,7 +8,7 @@ module FastSpring
     attr_reader :customer
 
     def initialize(reference)
-      @auth = {:username => FastSpring::Account.fetch(:username), 
+      @auth = {:username => FastSpring::Account.fetch(:username),
               :password => FastSpring::Account.fetch(:password)}
       @company = FastSpring::Account.fetch(:company)
       @reference = reference
