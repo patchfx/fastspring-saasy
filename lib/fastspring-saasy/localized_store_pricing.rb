@@ -32,8 +32,8 @@ module FastSpring
       @product_paths.each_index{ |index| query_hash["product_#{(index + 1)}_path".to_sym] = @product_paths[index] }
       query_hash.merge({ 
         :user_remote_addr => @remote_ip,
-        :user_x_forwarded_for => @http_accept_language,
-        :user_accept_language => @http_x_forwarded_for
+        :user_accept_language => @http_accept_language,
+        :user_x_forwarded_for => @http_x_forwarded_for
       })
     end
     
