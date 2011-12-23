@@ -17,6 +17,10 @@ module FastSpring
     def self.find(reference)
       self.new(reference).find
     end
+    
+    def reference
+      @reference
+    end
 
     # Returns the current status
     def status
@@ -53,6 +57,5 @@ module FastSpring
     def value_for(attribute)
       parsed_response.fetch(attribute)
     end
-
   end
 end
