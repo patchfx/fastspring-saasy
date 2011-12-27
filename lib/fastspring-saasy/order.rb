@@ -1,5 +1,5 @@
 module FastSpring
-  class Order < Base
+  class Order < PrivateApiBase
     attr_reader :purchaser, :items
     # Get the order from Saasy
     def find

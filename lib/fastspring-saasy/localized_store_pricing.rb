@@ -1,20 +1,5 @@
 module FastSpring
-  class LocalizedStorePricing
-    include HTTParty
-    base_uri 'http://sites.fastspring.com'
-    
-    def initialize(product_paths, remote_ip="", http_accept_language="en", http_x_forwarded_for="")
-      @company = FastSpring::Account.fetch(:company)
-      @product_paths = product_paths
-      @remote_ip = remote_ip
-      @http_accept_language = http_accept_language
-      @http_x_forwarded_for = http_x_forwarded_for
-    end
-
-    def self.find(product_path, remote_ip="", http_accept_language="en", http_x_forwarded_for="")
-      self.new(product_path, remote_ip, http_accept_language, http_x_forwarded_for).find
-    end
-    
+  class LocalizedStorePricing < PublicApiBase
     # Get the localized store pricing from Saasy
     def find
       # For some reason the implicit determination of the Txt parser does not work.
@@ -69,13 +54,14 @@ module FastSpring
       parsed_response[product_path]["unit_html"]
     end
 
-    private
+
+    protected
     
     def parsed_response
-      @formatted_response ||= formatted_response
+      @parsed_response ||= parse_response
     end
     
-    def formatted_response
+    def parse_response
       response = Hash.new
 
       index = 1

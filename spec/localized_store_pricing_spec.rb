@@ -2,38 +2,81 @@ require File.expand_path(File.join(File.dirname(__FILE__), '../lib/fastspring-sa
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper.rb'))
 
 describe FastSpring::LocalizedStorePricing do
+  def valid_http_request
+    request = double('request')
+    request.stub(:remote_ip).and_return("192.168.1.1")
+    request.stub(:env).and_return({ "HTTP_ACCEPT_LANGUAGE" => "nl", "HTTP_X_FORWARDED_FOR" => "192.168.1.2" })
+    request
+  end
+
+  def invalid_http_request
+    double('request')
+  end
+
+  def partial_http_request
+    request = double('request')
+    request.stub(:remote_ip).and_return("192.168.1.1")
+    request.stub(:env).and_return({ "HTTP_ACCEPT_LANGUAGE" => "nl" })
+    request
+  end
 
   before do
     FastSpring::Account.setup do |config|
       config[:username] = 'admin'
       config[:password] = 'test'
       config[:company] = 'acme'
-    end
+    end    
   end
 
   context 'url for localized store pricing' do
-    subject { FastSpring::LocalizedStorePricing.find(['/standard'], "1.2.3.4") }
-    before do
-      stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&user_x_forwarded_for=en").
-        to_return(:status => 200, :body => "", :headers => {})
+    context "with valid http request" do
+      subject { FastSpring::LocalizedStorePricing.find(['/standard'], valid_http_request) }
+      before do
+        stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/standard&user_accept_language=nl&user_remote_addr=192.168.1.1&user_x_forwarded_for=192.168.1.2").
+          to_return(:status => 200, :body => "", :headers => {})
+      end
+    
+      it 'returns the path for the company' do
+        subject.base_localized_store_pricing_path.should == "/acme/api/price"
+      end
     end
-  
-    it 'returns the path for the company' do
-      subject.base_localized_store_pricing_path.should == "/acme/api/price"
+    
+    context "with invalid http request" do
+      subject { FastSpring::LocalizedStorePricing.find(['/standard'], invalid_http_request) }
+      before do
+        stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/standard&user_accept_language=en&user_remote_addr=127.0.0.1&user_x_forwarded_for=").
+          to_return(:status => 200, :body => "", :headers => {})
+      end
+    
+      it 'returns the path for the company' do
+        subject.base_localized_store_pricing_path.should == "/acme/api/price"
+      end
+    end
+    
+    context "with partial http request" do
+      subject { FastSpring::LocalizedStorePricing.find(['/standard'], partial_http_request) }
+      before do
+        stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/standard&user_accept_language=nl&user_remote_addr=192.168.1.1&user_x_forwarded_for=").
+          to_return(:status => 200, :body => "", :headers => {})
+      end
+
+      it 'returns the path for the company' do
+        subject.base_localized_store_pricing_path.should == "/acme/api/price"
+      end
     end
   end
   
   context "parsed response for 1 product" do
-    subject { FastSpring::LocalizedStorePricing.find(['/standard'], "1.2.3.4") }
+    subject { FastSpring::LocalizedStorePricing.find(['/standard'], valid_http_request) }
     before do
-      stub_request(:get, "https://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
+      stub_request(:get, "https://api.fastspring.com/bizplay/api/price?product_1_path=/standard&user_accept_language=nl&user_remote_addr=192.168.1.1&user_x_forwarded_for=192.168.1.2").
         to_return(stub_http_response_with('basic_localized_store_pricing.txt'))
     end
-
+  
     it 'returns "US" as the user country' do
       subject.user_country.should == "US"
     end
-
+  
     it 'returns "en" as the user language' do
       subject.user_language.should == "en"
     end
@@ -64,9 +107,9 @@ describe FastSpring::LocalizedStorePricing do
   end
   
   context "localized pricing details specifically for 3 product" do
-    subject { FastSpring::LocalizedStorePricing.find(['/basic','/standard','/plus'], "1.2.3.4") }
+    subject { FastSpring::LocalizedStorePricing.find(['/basic','/standard','/plus'], valid_http_request) }
     before do
-      stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/basic&product_2_path=/standard&product_3_path=/plus&user_accept_language=&user_remote_addr=1.2.3.4&http_accept_language=en").
+      stub_request(:get, "http://sites.fastspring.com/acme/api/price?product_1_path=/basic&product_2_path=/standard&product_3_path=/plus&user_accept_language=nl&user_remote_addr=192.168.1.1&user_x_forwarded_for=192.168.1.2").
         to_return(stub_http_response_with('basic_localized_store_pricing_with_3_products.txt'))
     end
     
@@ -85,7 +128,7 @@ describe FastSpring::LocalizedStorePricing do
     it 'returns "US" as the user country' do
       subject.user_country.should == "US"
     end
-
+  
     it 'returns "en" as the user language' do
       subject.user_language.should == "en"
     end
@@ -106,6 +149,4 @@ describe FastSpring::LocalizedStorePricing do
       subject.product_unit_display("/plus").should == "$59.00"
     end
   end
-  
-  
 end
