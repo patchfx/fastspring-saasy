@@ -14,7 +14,11 @@ def stub_http_response_with(filename)
   response = Net::HTTPOK.new("1.1", 200, "Content for you")
   response.stub!(:body).and_return(data)
 
-  http_request = HTTParty::Request.new(Net::HTTP::Get, 'http://localhost', :format => format)
+  if format == :txt
+    http_request = HTTParty::Request.new(Net::HTTP::Get, 'http://localhost', :format => format, :parser => HTTParty::Parser::Txt)
+  else
+    http_request = HTTParty::Request.new(Net::HTTP::Get, 'http://localhost', :format => format)
+  end
   http_request.stub_chain(:http, :request).and_return(response)
 
   HTTParty::Request.should_receive(:new).and_return(http_request)

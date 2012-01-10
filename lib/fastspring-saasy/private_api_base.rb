@@ -1,5 +1,5 @@
 module FastSpring
-  class Base
+  class PrivateApiBase
     include HTTParty
     base_uri 'https://api.fastspring.com'
     format :xml
@@ -16,6 +16,10 @@ module FastSpring
 
     def self.find(reference)
       self.new(reference).find
+    end
+    
+    def reference
+      @reference
     end
 
     # Returns the current status
@@ -53,6 +57,5 @@ module FastSpring
     def value_for(attribute)
       parsed_response.fetch(attribute)
     end
-
   end
 end

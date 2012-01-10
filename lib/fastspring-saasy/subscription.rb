@@ -1,7 +1,7 @@
 require 'date'
 
 module FastSpring
-  class Subscription < Base
+  class Subscription < PrivateApiBase
 
     # Get the subscription from Saasy
     def find
