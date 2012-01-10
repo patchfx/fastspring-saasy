@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "fastspring-saasy.gemspec",
-    "lib/.DS_Store",
     "lib/fastspring-saasy.rb",
     "lib/fastspring-saasy/account.rb",
     "lib/fastspring-saasy/address.rb",
