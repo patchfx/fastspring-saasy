@@ -3,6 +3,7 @@ module FastSpring
     include HTTParty
     base_uri 'https://api.fastspring.com'
     format :xml
+    ssl_ca_file File.expand_path(File.dirname(__FILE__) + "/fastspring.crt")
     #debug_output
 
     attr_reader :customer
