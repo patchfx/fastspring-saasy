@@ -12,6 +12,7 @@ module FastSpring
               :password => FastSpring::Account.fetch(:password)}
       @company = FastSpring::Account.fetch(:company)
       @reference = reference
+      @ssl_ca_file = FastSpring::Account.fetch(:ssl_ca_file)
     end
 
     def self.find(reference)

@@ -5,7 +5,7 @@ module FastSpring
 
     # Get the subscription from Saasy
     def find
-      @response = self.class.get(base_subscription_path, :basic_auth => @auth)
+      @response = self.class.get(base_subscription_path, :basic_auth => @auth, :ssl_ca_file => @ssl_ca_file)
       self
     end
 
