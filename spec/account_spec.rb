@@ -10,6 +10,11 @@ describe FastSpring::Account do
     end
   end
   it 'stores the configuration for the account setup' do
-    FastSpring::Account.config.should == {:username=>"johndoe", :password=>"secret", :company=>"acme"}
+    FastSpring::Account.config.should == {
+      :username=>"johndoe",
+      :password=>"secret",
+      :company=>"acme",
+      :ssl_ca_file=>"#{Dir.pwd}/lib/fastspring-saasy/fastspring.crt"
+    }
   end
 end
