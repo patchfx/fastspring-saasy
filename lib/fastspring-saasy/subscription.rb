@@ -47,7 +47,7 @@ module FastSpring
     def destroy
       self.class.delete(base_subscription_path, :basic_auth => @auth)
     end
-    alias :cancel!, :destroy
+    alias :cancel! :destroy
 
     def renew_path
       "#{base_subscription_path}/renew"
