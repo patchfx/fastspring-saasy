@@ -26,6 +26,8 @@ Cancel subscription
   sub.cancel!
 
 Create subscriptions url
+  FastSpring::Subscription.create_subscription_url('test_product', 'new_co')
+  => http://sites.fastspring.com/acme/product/test_product?referrer=new_co
 
 Orders
   order = FastSpring::Order.find('reference')
