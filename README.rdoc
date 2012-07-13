@@ -38,8 +38,14 @@ Orders
   #customer details
   order.purchaser.inspect
 
+Localized Store Pricing
+  store_pricing = FastSpring::LocalizedStorePricing.find(['/standard'], http_request)
+
+  puts store_pricing.inspect
+
+
 == FastSpring
-  FastSpring have their own gem at https://github.com/fastspring/fastspring-ruby
+FastSpring have their own gem at https://github.com/fastspring/fastspring-ruby
 
 == Copyright
 
