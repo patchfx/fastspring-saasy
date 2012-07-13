@@ -1,6 +1,5 @@
 module FastSpring
   class Order < PrivateApiBase
-    attr_reader :purchaser, :items
     # Get the order from Saasy
     def find
       @response = self.class.get(base_order_path, :basic_auth => @auth, :ssl_ca_file => @ssl_ca_file)
