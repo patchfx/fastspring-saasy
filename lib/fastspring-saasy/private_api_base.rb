@@ -18,7 +18,7 @@ module FastSpring
     def self.find(reference)
       self.new(reference).find
     end
-    
+
     def reference
       @reference
     end
