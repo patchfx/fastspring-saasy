@@ -25,8 +25,21 @@ Renew subscription
 Cancel subscription
   sub.cancel!
 
-Get order
-  FastSpring::Order.find('reference')
+Orders
+  order = FastSpring::Order.find('reference')
+  order.items.each do |item|
+    # item.inspect
+  end
+
+  order.payments.each do |payment|
+    # payment.inspect
+  end
+
+  #customer details
+  order.purchaser.inspect
+
+== FastSpring
+  FastSpring have their own gem at https://github.com/fastspring/fastspring-ruby
 
 == Copyright
 
