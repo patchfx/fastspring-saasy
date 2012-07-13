@@ -43,6 +43,11 @@ module FastSpring
       Date.parse(value_for('end'))
     end
 
+    # Return path for creating subscriptions
+    def create_subscription_path(referrer)
+      "#{base_subscription_path}?referrer=#{referrer}"
+    end
+
     # Cancel the subscription
     def destroy
       self.class.delete(base_subscription_path, :basic_auth => @auth)
