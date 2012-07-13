@@ -8,7 +8,7 @@ Ruby library to access the FastSpring Saasy API.
 
 == Usage
 
-  require 'fastspring-saasy'
+Setup account credentials
 
   FastSpring::Account.setup do |config|
     config[:username] = 'user'
@@ -16,14 +16,18 @@ Ruby library to access the FastSpring Saasy API.
     config[:company] = 'company'
   end
 
-  #get subscription
-  FastSpring::Subscription.find('reference')
+Get subscription
+  sub = FastSpring::Subscription.find('reference')
 
-  #get order
+Renew subscription
+  sub.renew
+
+Cancel subscription
+  sub.cancel!
+
+Get order
   FastSpring::Order.find('reference')
 
 == Copyright
 
-Copyright (c) 2011 Richard Patching. See LICENSE.txt for
-further details.
-
+Copyright (c) 2012 Richard Patching. See LICENSE.txt for further details.
