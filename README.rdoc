@@ -25,6 +25,8 @@ Renew subscription
 Cancel subscription
   sub.cancel!
 
+Create subscriptions url
+
 Orders
   order = FastSpring::Order.find('reference')
   order.items.each do |item|

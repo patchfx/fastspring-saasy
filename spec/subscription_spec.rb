@@ -88,15 +88,8 @@ describe FastSpring::Subscription do
   end
 
   context 'create subscriptions path' do
-    subject { FastSpring::Subscription.find('test_ref') }
-
-    before do
-      stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
-                 to_return(:status => 200, :body => "", :headers => {})
-    end
-
     it 'returns the path for creating a new subscription' do
-      subject.create_subscription_path('acme_co').should == "/company/acme/subscription/test_ref?referrer=acme_co"
+      FastSpring::Subscription.create_subscription_url('tnt','acme_co').should == "http://sites.fastspring.com/acme/product/tnt?referrer=acme_co"
     end
   end
 

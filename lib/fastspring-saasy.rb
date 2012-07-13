@@ -15,3 +15,8 @@ require_relative 'fastspring-saasy/public_api_base'
 require_relative 'fastspring-saasy/localized_store_pricing'
 
 require_relative 'fastspring-saasy/error'
+
+module FastSpring
+  SITE_URL = 'http://sites.fastspring.com'
+  API_URL = 'https://api.fastspring.com'
+end

@@ -2,7 +2,9 @@ require 'date'
 
 module FastSpring
   class Subscription < PrivateApiBase
-
+    def self.create_subscription_url(reference, referrer)
+      "#{SITE_URL}/#{FastSpring::Account.fetch(:company)}/product/#{reference}?referrer=#{referrer}"
+    end
     # Get the subscription from Saasy
     def find
       @response = self.class.get(base_subscription_path, :basic_auth => @auth, :ssl_ca_file => @ssl_ca_file)
@@ -41,11 +43,6 @@ module FastSpring
     # The date the subscription ends on
     def ends_on
       Date.parse(value_for('end'))
-    end
-
-    # Return path for creating subscriptions
-    def create_subscription_path(referrer)
-      "#{base_subscription_path}?referrer=#{referrer}"
     end
 
     # Cancel the subscription
