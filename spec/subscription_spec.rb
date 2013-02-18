@@ -85,6 +85,11 @@ describe FastSpring::Subscription do
     it 'returns the end date' do
       subject.ends_on.should be_an_instance_of(Date)
     end
+    
+    it 'returns the tags as a symbolized hash' do
+      subject.tags[:number1].should == "1"
+      subject.tags[:number2].should == "2"
+    end
   end
 
   context 'create subscriptions path' do

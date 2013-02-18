@@ -49,6 +49,20 @@ module FastSpring
       value_for('quantity').to_i
     end
 
+    def tags
+      begin
+        fs_tags = value_for('tags')
+        result = {}
+        fs_tags.split(",").each do |t| 
+           k,v = t.strip.split('=')
+           result[k.to_sym] = v
+        end
+        result
+      rescue 
+        nil
+      end
+    end
+
     def customer_url
       value_for('customerUrl')
     end
