@@ -22,6 +22,10 @@ Get subscription
 Renew subscription
   sub.renew
 
+Update subscription
+  sub = FastSpring::Subscription.find('reference')
+  sub.update!(product_path: '/product', quantity: 1, proration: true)
+
 Cancel subscription
   sub.cancel!
 
