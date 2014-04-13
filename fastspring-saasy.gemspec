@@ -67,6 +67,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
       s.add_development_dependency(%q<httparty>, ["~> 0.8.1"])
+      s.add_development_dependency(%q<gyoku>, ["~> 1.0"])
     else
       s.add_dependency(%q<httparty>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -74,6 +75,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<ruby-debug19>, [">= 0"])
       s.add_dependency(%q<httparty>, ["~> 0.8.1"])
+      s.add_dependency(%q<gyoku>, ["~> 1.0"])
     end
   else
     s.add_dependency(%q<httparty>, [">= 0"])
@@ -82,6 +84,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<ruby-debug19>, [">= 0"])
     s.add_dependency(%q<httparty>, ["~> 0.8.1"])
+    s.add_dependency(%q<gyoku>, ["~> 1.0"])
   end
 end
 
