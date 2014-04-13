@@ -23,8 +23,19 @@ Renew subscription
   sub.renew
 
 Update subscription
-  sub = FastSpring::Subscription.find('reference')
-  sub.update!(product_path: '/product', quantity: 1, proration: true)
+  attributes = {
+    first_name: 'John',
+    last_name: 'Doe',
+    company: 'Doe Inc.',
+    email: 'john.doe@example.com',
+    phone_number: '+1 123 456 789',
+    product_path: '/product',
+    quantity: 1,
+    tags: 'tag1, tag2, tag3',
+    coupon: 'code',
+    proration: true
+  }
+  sub.update!(attributes)
 
 Cancel subscription
   sub.cancel!
@@ -57,4 +68,4 @@ FastSpring have their own gem at https://github.com/fastspring/fastspring-ruby
 
 == Copyright
 
-Copyright (c) 2012 Richard Patching. See LICENSE.txt for further details.
+Copyright (c) 2014 Richard Patching. See LICENSE.txt for further details.
