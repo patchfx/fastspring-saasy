@@ -1,16 +1,14 @@
-source :rubygems
+source "http://rubygems.org"
 
 gem 'httparty'
+gem 'gyoku'
 
 group :development do
   gem 'rake'
   gem 'bundler'
-  gem 'jeweler'
-  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 group :test do
   gem 'rspec'
   gem 'webmock'
-  gem 'ruby-debug19', :require => 'ruby-debug'
 end

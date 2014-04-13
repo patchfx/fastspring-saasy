@@ -19,4 +19,5 @@ require_relative 'fastspring-saasy/error'
 module FastSpring
   SITE_URL = 'http://sites.fastspring.com'
   API_URL = 'https://api.fastspring.com'
+  VERSION = "0.6"
 end

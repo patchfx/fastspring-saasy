@@ -11,20 +11,8 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  gem.name = "fastspring-saasy"
-  gem.homepage = "http://github.com/patchfx/fastspring"
-  gem.license = "MIT"
-  gem.summary = %Q{Ruby lib for using the FastSpring (Saasy) API}
-  gem.description = %Q{Ruby lib for using the FastSpring (Saas) subscription management API}
-  gem.email = "richard@justaddpixels.com"
-  gem.authors = ["Richard Patching"]
-  gem.add_development_dependency 'httparty', '~> 0.8.1'
-end
-Jeweler::RubygemsDotOrgTasks.new
-
 require 'rdoc/task'
+
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
