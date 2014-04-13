@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "fastspring-saasy"
-  s.version = FastSpring::VERSION
+  s.version = "0.6.0"
 
   s.authors = ["Richard Patching"]
   s.email = "richard@justaddpixels.com"
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split($/)
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
 
   s.add_dependency "httparty"
   s.add_dependency "gyoku"
