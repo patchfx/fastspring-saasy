@@ -1,0 +1,25 @@
+<subscription>
+  <status>active</status>
+  <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+  <statusReason>completed</statusReason>
+  <cancelable>true</cancelable>
+  <reference/>
+  <test>true</test>
+  <referrer>acme_app</referrer>
+  <sourceName>acme_source</sourceName>
+  <sourceKey>acme_source_key</sourceKey>
+  <sourceCampaign>acme_source_campaign</sourceCampaign>
+  <customer>
+    <firstName>John</firstName>
+    <lastName>Doe</lastName>
+    <company>Doe Inc</company>
+    <email>johndoe@example.com</email>
+    <phoneNumber>0123456789</phoneNumber>
+  </customer>
+  <customerUrl/>
+  <productName>Acme Inc Web</productName>
+  <tags>number1=1, number2=2</tags>
+  <quantity>12</quantity>
+  <nextPeriodDate>2010-08-15Z</nextPeriodDate>
+  <end>2010-08-15Z</end>
+</subscription>

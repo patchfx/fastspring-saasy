@@ -15,7 +15,8 @@ module FastSpring
 
     # Update the subscription from Saasy
     def update!(options={})
-      self.class.put(base_subscription_path, :body => Gyoku.xml(subscription: options), :headers => {'Content-Type' => 'application/xml'},:basic_auth => @auth)
+      @response = self.class.put(base_subscription_path, :body => Gyoku.xml(subscription: options), :headers => {'Content-Type' => 'application/xml'},:basic_auth => @auth)
+      self
     end
 
     # Returns the base path for a subscription
@@ -94,7 +95,6 @@ module FastSpring
     def parsed_response
       @response.parsed_response['subscription']
     end
-
   end
 end
 

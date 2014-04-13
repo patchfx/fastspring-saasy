@@ -109,4 +109,20 @@ describe FastSpring::Subscription do
       subject.renew_path.should == "/company/acme/subscription/test_ref/renew"
     end
   end
+
+  context 'update' do
+    subject { FastSpring::Subscription.find('test_ref') }
+
+    before do
+      stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
+        to_return(stub_http_response_with('basic_subscription.xml'))
+      stub_request(:put, "https://admin:test@api.fastspring.com/company/acme/subscription/test_ref").
+        to_return(stub_http_response_with('basic_updated_subscription.xml', :put))
+    end
+
+    it "updates the subscription from given attributes" do
+      subject.update!(quantity: 12)
+      subject.quantity.should be(12)
+    end
+  end
 end
