@@ -6,6 +6,10 @@ module FastSpring
       self
     end
 
+    def build_from(response)
+      @response = response
+    end
+
     def base_order_path
       "/company/#{@company}/order/#{@reference}"
     end

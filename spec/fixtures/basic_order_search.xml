@@ -1,0 +1,30 @@
+<orders>
+  <order>
+    <reference/>
+    <status>open</status>
+    <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+    <test>true</test>
+    <returnStatus>none</returnStatus>
+    <customer>
+      <firstName/>
+      <lastName/>
+      <company/>
+      <email/>
+      <phoneNumber/>
+    </customer>
+  </order>
+  <order>
+    <reference/>
+    <status>closed</status>
+    <statusChanged>2010-08-15T00:00:00.000Z</statusChanged>
+    <test>true</test>
+    <returnStatus>none</returnStatus>
+    <customer>
+      <firstName/>
+      <lastName/>
+      <company/>
+      <email/>
+      <phoneNumber/>
+    </customer>
+  </order>
+</orders>

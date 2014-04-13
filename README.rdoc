@@ -44,7 +44,13 @@ Create subscriptions url
   FastSpring::Subscription.create_subscription_url('test_product', 'new_co')
   => http://sites.fastspring.com/acme/product/test_product?referrer=new_co
 
-Orders
+Search Orders
+  orders = FastSpring::Order.search('search-string')
+  orders.each do |order|
+    # order.inspect
+  end
+
+Find Order
   order = FastSpring::Order.find('reference')
   order.items.each do |item|
     # item.inspect

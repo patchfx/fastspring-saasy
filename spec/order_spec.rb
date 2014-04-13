@@ -10,6 +10,16 @@ describe FastSpring::Order do
     end
   end
 
+  context 'search' do
+    it 'searches for orders from a given query' do
+      stub_request(:get, "https://admin:test@api.fastspring.com/company/acme/orders/search?query=doe").
+        to_return(stub_http_response_with('basic_order_search.xml'))
+
+      orders = FastSpring::Order.search('doe')
+      orders.size.should be(2)
+    end
+  end
+
   context 'url for orders' do
     subject { FastSpring::Order.find('test_ref') }
     before do

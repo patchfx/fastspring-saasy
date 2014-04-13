@@ -19,6 +19,20 @@ module FastSpring
       self.new(reference).find
     end
 
+    def self.search(query="")
+      self.new("").search(query)
+    end
+
+    def search(query)
+      response = self.class.get("/company/#{@company}/orders/search?query=#{CGI::escape(query)}", :basic_auth => @auth, :ssl_ca_file => @ssl_ca_file)
+      order_response = response.parsed_response['orders']['order']
+      return [] if order_response.nil?
+
+      order_response.map do |order|
+        Order.new("").build_from(order)
+      end
+    end
+
     def reference
       @reference
     end
