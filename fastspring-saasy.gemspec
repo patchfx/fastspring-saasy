@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "richard@justaddpixels.com"
   s.description = "Ruby lib for using the FastSpring (SaaSy) subscription management API"
   s.summary = "Ruby lib for using the FastSpring (Saasy) API"
-  s.homepage = "http://github.com/patchfx/fastspring"
+  s.homepage = "http://github.com/patchfx/fastspring-saasy"
 
   s.files = `git ls-files`.split($/)
   s.licenses = ["MIT"]
