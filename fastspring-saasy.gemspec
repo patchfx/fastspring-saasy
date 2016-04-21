@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
 
-  s.add_dependency "httparty"
-  s.add_dependency "gyoku"
+  s.add_dependency "httparty", "~> 0.10.0", ">= 0.10.0"
+  s.add_dependency "gyoku", "~> 1.0.0", ">= 1.0.0"
 
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "webmock"
+  s.add_development_dependency "rake", "~> 10.0.3", ">= 10.0.3"
+  s.add_development_dependency "rspec", "~> 2.12.0", ">= 2.12.0"
+  s.add_development_dependency "webmock", "~> 1.9.0", ">= 1.9.0"
 end
