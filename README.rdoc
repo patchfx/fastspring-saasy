@@ -68,10 +68,6 @@ Localized Store Pricing
 
   puts store_pricing.inspect
 
-
-== FastSpring
-FastSpring have their own gem at https://github.com/fastspring/fastspring-ruby
-
 == Copyright
 
-Copyright (c) 2014 Richard Patching. See LICENSE.txt for further details.
+Copyright (c) 2016 Richard Patching. See LICENSE.txt for further details.
