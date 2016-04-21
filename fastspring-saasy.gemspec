@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name = "fastspring-saasy"
-  s.version = "0.6.0"
+  s.version = "0.6.2"
 
   s.authors = ["Richard Patching"]
   s.email = "richard@justaddpixels.com"
