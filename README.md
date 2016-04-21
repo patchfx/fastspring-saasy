@@ -37,7 +37,7 @@ Update subscription
     sub.update!(attributes)
 
 Cancel subscription
-    sub.cancel!
+    `sub.cancel!`
 
 Create subscriptions url
     FastSpring::Subscription.create_subscription_url('test_product', 'new_co')
