@@ -35,3 +35,6 @@ DEPENDENCIES
   rake
   rspec
   webmock
+
+BUNDLED WITH
+   1.11.2

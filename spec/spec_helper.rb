@@ -17,11 +17,7 @@ def stub_http_response_with(filename, type=:get)
   request_type = Net::HTTP::Get if type == :get
   request_type = Net::HTTP::Put if type == :put
 
-  if format == :txt
-    http_request = HTTParty::Request.new(request_type, 'http://localhost', :format => format, :parser => HTTParty::Parser::Txt)
-  else
-    http_request = HTTParty::Request.new(request_type, 'http://localhost', :format => format)
-  end
+  http_request = HTTParty::Request.new(request_type, 'http://localhost', :format => format)
   http_request.stub_chain(:http, :request).and_return(response)
 
   HTTParty::Request.should_receive(:new).at_most(2).times.and_return(http_request)
